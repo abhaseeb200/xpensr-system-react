@@ -4,21 +4,21 @@ export const categorySlice = createSlice({
   name: "category",
   initialState: { categoryData: [] },
   reducers: {
-    getCategory: (state, action) => {
+    getCategoryReducer: (state, action) => {
       return {
         ...state,
         categoryData: [...action.payload],
       };
     },
-    addCategory: (state, action) => {
+    addCategoryReducer: (state, action) => {
       return {
         ...state,
         categoryData: [action.payload, ...state.categoryData],
       };
     },
-    editCategory: (state, action) => {
+    updateCategoryReducer: (state, action) => {
       let currentIndex = state.categoryData.findIndex(
-        (item) => item.docID == action.payload.docID
+        (item) => item.docId == action.payload.docId
       );
 
       if (currentIndex !== -1) {
@@ -26,29 +26,23 @@ export const categorySlice = createSlice({
       }
       return state;
     },
-    deleteCategory: (state, action) => {
+    deleteCategoryReducer: (state, action) => {
       return {
         ...state,
         categoryData: state.categoryData.filter(
-          (item) => item.docID != action.payload
+          (item) => item.docId != action.payload
         ),
-      };
-    },
-    clearCategory: (state) => {
-      return {
-        ...state,
-        categoryData: [],
       };
     },
   },
 });
 
 export const {
-  getCategory,
-  addCategory,
-  editCategory,
-  deleteCategory,
-  clearCategory,
+  getCategoryReducer,
+  addCategoryReducer,
+  updateCategoryReducer,
+  deleteCategoryReducer,
+  clearCategoryReducer,
 } = categorySlice.actions;
 
 export default categorySlice.reducer;
